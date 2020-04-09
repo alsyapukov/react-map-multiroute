@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import s from './style.scss'
+import '@/components/base/Button/button.scss'
 
 class Select extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: null
-    }
+  
+  state = {
+    value: null
   }
 
   render() {

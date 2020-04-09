@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import s from './style.scss'
+import '@/components/Header/SearchBar/Category/category.scss'
 
 import Select from '@/components/base/Select'
-import categories from './categories.json'
+import categories from '@/components/Header/SearchBar/Category/categories.json'
 
 class Category extends Component {
 

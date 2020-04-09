@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import s from './style.scss'
+import './header.scss'
 
-import SearchBar from './SearchBar'
+import SearchBar from '@/components/Header/SearchBar'
 
 class Header extends Component {
   render() {

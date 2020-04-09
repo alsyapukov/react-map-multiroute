@@ -1,22 +1,15 @@
 import React, { Component } from "react";
-import s from './style.scss'
+import '@/components/base/Select/select.scss'
 
 class Select extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      view: false,
-      value: 0
-    }
-    this.toggle = this.toggle.bind(this);
-    this.show = this.show.bind(this);
-    this.close = this.close.bind(this);
-    this.choiceOption = this.choiceOption.bind(this);
+  state = {
+    view: false,
+    value: 0
   }
 
 
-  toggle() {
+  toggle = () => {
     if(this.state.view) {
       this.close()
     } else {
@@ -24,16 +17,15 @@ class Select extends Component {
     }
   }
 
-  show() {
+  show = () => {
     this.setState({view: true});
   }
 
-  close() {
+  close = () => {
     this.setState({view: false});
   }
 
-  choiceOption(i) {
-    console.log(i)
+  choiceOption = (i) => {
     this.setState({value: i});
   }
 
@@ -47,7 +39,7 @@ class Select extends Component {
               {
                 (this.props.options.map((option, i) => {
                   return (
-                    <div className="select__option" onClick={(e) => this.choiceOption(i, e)} key={option.value}>{ option.text }</div>
+                    <div className="select__option" onClick={() => this.choiceOption(i)} key={option.value}>{ option.text }</div>
                   )
                 }))
               }

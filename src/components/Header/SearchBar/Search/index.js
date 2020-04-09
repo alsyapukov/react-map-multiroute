@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import s from './style.scss';
+import '@/components/Header/SearchBar/Search/search.scss';
+
+import SearchList from '@/components/Header/SearchBar/Search/SearchList';
 
 const enhanceWithClickOutside = require('react-click-outside');
 
-import categories from '../Category/categories.json';
+import categories from '@/components/Header/SearchBar/Category/categories.json';
 
 const optionsCategories = categories.map((cat, i) => {
   return {
@@ -11,63 +13,21 @@ const optionsCategories = categories.map((cat, i) => {
     value: i
   }
 })
-const SearchList = (() => {
-  class SearchList extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        view: false
-      }
-    }
-
-    handleClickOutside() {
-      this.toggle();
-    }
-  
-    toggle() {
-      this.setState({ view: !this.state.view });
-    }
-    render() {
-      const viewList = this.props.view && this.state.view;
-      return (
-        viewList &&
-        (
-          <div className="search__list">
-            {
-              this.props.categoriesFilter.map((category, i) => {
-                return <div className="search__item" key={category.value}>{category.text}</div>
-              })
-            }
-          </div>
-        )
-      );
-    }
-  }
-  return enhanceWithClickOutside(SearchList);
-})();
 
 class Search extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      view: false,
-      value: "",
-      maxItems: 10,
-      cat: optionsCategories,
-      categoriesFilter: []
-    }
-
-    this.viewSearchList = this.viewSearchList.bind(this);
-    this.searchChange = this.searchChange.bind(this);
-    this.searchFilter = this.searchFilter.bind(this);
+  state = {
+    view: false,
+    value: "",
+    maxItems: 10,
+    cat: optionsCategories,
+    categoriesFilter: []
   }
 
-  viewSearchList(val) {
+  viewSearchList = (val) => {
     this.setState({ view: val })
   }
 
-  searchChange(e) {
+  searchChange = (e) => {
     if(e.target.value.length > 0) {
       this.viewSearchList(true);
     } else {
@@ -77,18 +37,47 @@ class Search extends Component {
     this.setState({ value: e.target.value });
   }
 
-  searchFilter(val) {
+  searchFilter = (val) => {
     const filterCat = this.state.cat.filter(
       (category, i) => i < this.state.maxItems && category.text.toLowerCase().includes(val.toLowerCase())
     );
     this.setState({ categoriesFilter: filterCat });
   }
 
+  updateData = (value) => {
+    this.setState({ value: value });
+  }
+
+  // toggle = (val) => {
+  //   val
+  //     ? this.close()
+  //     : this.show()
+  // }
+
+  close = () => {
+    this.setState({ view: false });
+  }
+
+  show = () => {
+    this.setState({ view: true });
+  }
+
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      this.updateData(
+        this.state.categoriesFilter.length > 0 
+          ? this.state.categoriesFilter[0].text 
+          : ""
+      );
+      this.close();
+    }
+  }
+
   render() {
     return (
       <div className="search">
-        <input type="text" className="search__input" value={this.state.value} onChange={this.searchChange} />
-        <SearchList view={this.state.view} categoriesFilter={this.state.categoriesFilter}/>
+        <input type="text" className="search__input" value={this.state.value} onKeyPress={this.handleKeyPress} onChange={this.searchChange} />
+        <SearchList updateData={this.updateData} view={this.state.view} close={this.close} categoriesFilter={this.state.categoriesFilter}/>
       </div>
     );
   }

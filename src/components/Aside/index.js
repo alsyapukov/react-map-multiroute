@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import s from './aside.scss'
+import '@/components/Aside/aside.scss'
 class Aside extends Component {
   render() {
     return (

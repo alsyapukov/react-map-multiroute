@@ -1,10 +1,11 @@
 .aside {
   width: 270px;
+  min-width: 270px;
   background: #fff;
   
   &__sticky {
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: 100%;
   }
 }

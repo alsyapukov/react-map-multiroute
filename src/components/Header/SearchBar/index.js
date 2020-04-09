@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import s from './style.scss'
+import '@/components/Header/SearchBar/searchBar.scss'
 
-import Category from './Category'
-import Search from './Search'
+import Category from '@/components/Header/SearchBar/Category'
+import Search from '@/components/Header/SearchBar/Search'
 import Button from '@/components/base/Button'
 
 class SearchBar extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     return (
