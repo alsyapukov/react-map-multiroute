@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import '@/components/Header/SearchBar/searchBar.scss'
 
 import Category from '@/components/Header/SearchBar/Category'
-import Search from '@/components/Header/SearchBar/Search'
+import Search from '@/containers/Search'
 import Button from '@/components/base/Button'
 
 class SearchBar extends Component {
