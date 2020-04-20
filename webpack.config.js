@@ -17,7 +17,7 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, "src/"),
       'public': path.resolve(__dirname, "public/"),
-      'assets': path.resolve(__dirname, "assets/"),
+      'assets': path.resolve(__dirname, "src/assets/"),
     }
   },
   module: {
@@ -54,5 +54,6 @@ module.exports = {
         use: ["file-loader"]
       }
     ]
-  }
+  },
+  externals: ["fs"]
 };

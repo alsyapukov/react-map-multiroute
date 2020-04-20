@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import "@/components/App/app.scss";
+import "./app.scss";
 
-import Header from "@/components/Header/";
-import Content from "@/components/Content/";
+import EditRoute from '../EditRoute'
 
 class App extends Component {
   render() {
     return (
       <div className="app">
-        <Header />
-        <Content />
+        <div className="app__wrap">
+          <EditRoute />
+        </div>
       </div>
     );
   }
